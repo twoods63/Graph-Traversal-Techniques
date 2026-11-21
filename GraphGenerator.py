@@ -23,12 +23,12 @@ def random_graph(vertices, variance):
 
 #Generates a random graph and prints it to the console to be copy/pasted to the other programs
 if __name__ == "__main__":
-    generatedGraph = random_graph(vertices=100, variance=0.2)
+    generatedGraph = random_graph(vertices=50, variance=0.2)
     
     #Prints the graph. The brackets are added for optimal copy/pasting to the program.
     print("{")
     for x, neighbors in generatedGraph.items():
-        print("V" + f"{x}: {sorted(neighbors)}")
+        print(" \"V" + f"{x}\": {sorted(neighbors)},")
 
         #print("V" + f"{x}: {neighbors}")
     print("}")
