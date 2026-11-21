@@ -70,7 +70,12 @@ def bfs_shortest_path(graph, start, goal):
     path.reverse()                  # flip it so it reads start -> goal
     return path                     # return the finished path
  
- 
+
+def bfs_path_length(graph, start, goal):
+    """Number of edges in the shortest path from start to goal, or None if unreachable."""
+    _, _, distance = bfs_traversal(graph, start)   # run BFS; only distance map needed
+    return distance.get(goal)                      # return the distance to the goal, or None if unreachable
+
 # =============================================================================
 # [4] APPLICATION: LEVELS (useful for the BFS layer diagram)
 # Groups nodes by how many edges they are from the start.
@@ -176,7 +181,9 @@ if __name__ == "__main__":
     print("Distances from A:", distance)                                               # show each node's edge distance from A
     print("Levels from A:", bfs_levels(UNDIRECTED, "A"))                               # show nodes grouped by level
     print("Shortest path A -> F:", bfs_shortest_path(UNDIRECTED, "A", "F"))            # shortest path within A's component
+    print("Path length A -> F:", bfs_path_length(UNDIRECTED, "A", "F"))                # shows number of edges in that path
     print("Shortest path A -> G:", bfs_shortest_path(UNDIRECTED, "A", "G"))            # G is in another component, so None
+    print("Path length A -> G:", bfs_path_length(UNDIRECTED, "A", "G"))                # None again, since there is no path
     print("Connected components:", bfs_connected_components(UNDIRECTED))               # find both components
     print("Topological order (Kahn):", bfs_topological_sort(DAG))                      # prerequisite-respecting order
     print(f"Avg traversal time: {time_bfs(UNDIRECTED, 'A') * 1e6:.2f} microseconds")   # average speed in microseconds
